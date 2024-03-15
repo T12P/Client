@@ -3,6 +3,10 @@ public color fieldColor = color(255);
 public color fieldColorAlt = color(150);
 public int selectedNumber = -1;
 
+public int highNumber;
+public int lowNumber;
+
+
 PImage bg;
 Field f, z, y;
 Wuerfel q, p;
@@ -24,35 +28,73 @@ void setup() {
     p = new Wuerfel(0, 5, 830, 920, color(255, 0, 0), textColor);
     q = new Wuerfel(1, 6, 920, 920, color(255, 247, 0), textColor);
 }
-
+/*
 void operations(int value1, int value2) {
-    if (keyPressed == true) {
-        if (key == '+') {
-            println(" + ");
-            selectedNumber = int(value1 + value2);
-        } else if (key == '-') {
-            println(" - ");
-            selectedNumber = int(value1 - value2);
-        } else if (key == '*') {
-            println(" * ");
-            selectedNumber = int(value1 * value2);
-        } else if (key == '/') {
-            println(" / ");
-            selectedNumber = int(value1 / value2);
-        }
+int high;
+int low;
+if (value1 > value2) {
+high = value1;
+low = value2;
+    } else if (value1 < value2) {
+high = value2;
+low = value1;
+    } else if (value1 == value2) {
+high = value1;
+low = value2;
+    }
+if (keyPressed == true) {
+if (key == '+') {
+println(" + ");
+selectedNumber = int(high + low);
+} else if (key == '-') {
+println(" - ");
+selectedNumber = int(high - low);
+} else if (key == '*') {
+println(" * ");
+selectedNumber = int(high * low);
+} else if (key == '/') {
+if (high == 0 || low == 0) {
+selectedNumber = -1;
+} else {
+println(" / ");
+selectedNumber = int(high / low);
+}
+}
+    }
+}
+*/
+
+void highLowCheck(int value1, int value2) {
+    if (value1 > value2) {
+        highNumber = value1;
+        lowNumber = value2;
+    } else if (value1 < value2) {
+        highNumber = value2;
+        lowNumber = value1;
+    } else if (value1 == value2) {
+        highNumber = value1;
+        lowNumber = value2;
     }
 }
 
 void draw() {
     background(bg);
     
-    operations(p.exposeValue(), q.exposeValue());
+    highLowCheck(p.exposeValue(), q.exposeValue());
     
     fill(textColor);
-    text("Calculation: " + str(selectedNumber), 800, 100);
+    textSize(25);
+    text("Calculations:", 600, 30);
+    text("Low: " + str(lowNumber), 600, 60);
+    text("High: " + str(highNumber), 600, 90);
+    text("Subtraction: " + str(highNumber - lowNumber), 600, 120);
+    text("Addition: " + str(highNumber + lowNumber), 600, 150);
+    text("Multiplication: " + str(highNumber * lowNumber), 600, 180);
+    
     
     p.Draw();
     q.Draw();
+    
     f.Draw();
     z.Draw();
     y.Draw();
