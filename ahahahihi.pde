@@ -1,18 +1,43 @@
 
 public int textColor = 0;
 public int fieldColor = 255;
+public int fieldColorAlt = 150;
 
 class Wuerfel {
-  Wuerfel(int low, int high) {
+  Wuerfel(int low, int high, int posX, int posY, color diceColor) {
     this.low = low;
     this.high = high;
+    this.posX = posX;
+    this.posY = posY;
+    this.diceColor = diceColor;
   }
   
   private int low;
   private int high;
+  private int posX;
+  private int posY;
+  private color diceColor;
+  private int lastDiceValue;
   
+  public int exposeValue() {
+    return this.lastDiceValue;
+  }
+
+
   public int Run() {
     return int(random(this.low, this.high));
+  }
+
+  public void Draw() {
+    if (keyPressed == true && key == ' ') {
+      this.lastDiceValue = this.Run();
+    }
+    fill(this.diceColor);
+    square(this.posX, this.posY, 50);
+    
+    fill(textColor);
+    text(str(this.lastDiceValue), this.posX, this.posY);
+    fill(fieldColor);
   }
 }
 
@@ -24,12 +49,47 @@ class Field {
   
   private int posX;
   private int posY;
+  private int size = 100;
   
   private int Value;
   private Boolean IsUsed = false;
   
   private Field[] Neighboring ={};
   
+  // Button Test
+
+  private Boolean clicked = false;
+  private Boolean overButton = false;
+  private Boolean numberShown = false;
+
+  private void Update() {
+    if (overCircle()) {
+      this.overButton = true;
+    } else {
+      this.overButton = false;
+    }
+    this.mouseClicked();
+  }
+
+  private Boolean overCircle() {
+    float disX = this.posX - mouseX;
+    float disY = this.posY - mouseY;
+    if (sqrt(sq(disX) + sq(disY)) < this.size/2 ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private void mouseClicked() {
+    if (this.overButton && mousePressed) {
+      this.numberShown = true;
+      println("KEKW");
+    }
+  }
+
+  // Button Test End
+
   public void SetValue(int v) {
     if (!this.IsUsed) {
       this.Value = v;
@@ -47,8 +107,16 @@ class Field {
     return this.IsUsed;
   }
   
-  public void Draw() {   
-    circle(this.posX, this.posY, 100);
+  public void Draw() {
+    this.Update();
+
+    if (this.overButton) {
+      fill(fieldColorAlt);
+    } else {
+      fill(fieldColor);
+    }
+
+    circle(this.posX, this.posY, this.size);
     
     if (this.IsUsed) {     
       fill(textColor);
@@ -56,8 +124,9 @@ class Field {
       int lul = str(this.Value).length();
       textSize(100 / lul);
       
-      text(str(this.Value), this.posX, this.posY);
-      fill(fieldColor);
+      if (this.numberShown) {
+        text(str(this.Value), this.posX, this.posY);
+      }
     }
   }
 }
@@ -76,34 +145,43 @@ void setup() {
   f = new Field(50, 50);
   z = new Field(200, 200);
   y = new Field(400, 400);
-    
+
   f.SetValue(4);
   z.SetValue(12);
   
-  p = new Wuerfel(0, 5);
-  q = new Wuerfel(1, 6);
-  
-  println(p.Run());
-  println(q.Run());
+  p = new Wuerfel(0, 5, 830, 920, color(255, 0, 0));
+  q = new Wuerfel(1, 6, 920, 920, color(255, 247, 0));
 }
 
-int qr, pr;
+int operations(int value1, int value2) {
+  if (keyPressed == true) {
+    if (key == '+') {
+      println("+");
+      return int(value1 + value2);
+    } else if (key == '-') {
+      println("-");
+      return int(value1 - value2);
+    } else if (key == '*') {
+      println("*");
+      return int(value1 * value2);
+    } else if (key == '/') {
+      println("/");
+      return int(value1 / value2);
+    } else {
+      return -1;
+    }
+  }
+  return -1;
+}
+
 void draw() {
   background(bg);
 
-  if (keyPressed == true) {
-     qr = q.Run();
-     pr = p.Run();
-  }
-    
-  square(900, 900, 25);
-  square(900, 950, 25);
-  
-  fill(textColor);
-  text(str(qr), 900, 900);
-  text(str(pr), 900, 950);
-  fill(fieldColor);
+  println(operations(p.exposeValue(), q.exposeValue()));
 
+  p.Draw();
+  q.Draw();
   f.Draw();
   z.Draw();
+  y.Draw();
 }
