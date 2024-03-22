@@ -18,9 +18,9 @@ void setup() {
     
     textSize(100);
     
-    f = new Field(50, 50, fieldColor, fieldColorAlt, textColor);
-    z = new Field(200, 200, fieldColor, fieldColorAlt, textColor);
-    y = new Field(400, 400, fieldColor, fieldColorAlt, textColor);
+    f = new Field(342, 121, fieldColor, fieldColorAlt, textColor);
+    z = new Field(238, 149, fieldColor, fieldColorAlt, textColor);
+    y = new Field(264, 254, fieldColor, fieldColorAlt, textColor);
     
     p = new Wuerfel(0, 5, 830, 920, color(255, 0, 0), textColor);
     q = new Wuerfel(1, 6, 920, 920, color(255, 247, 0), textColor);
