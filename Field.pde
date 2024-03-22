@@ -26,12 +26,11 @@ class Field {
     private Boolean numberShown = false;
     
     private void Update() {
-        if (overCircle()) {
-            this.overButton = true;
-        } else {
-            this.overButton = false;
+        this.overButton = this.overCircle();
+        if (this.overButton && mousePressed) {
+            this.SetValue(selectedNumber);
+            this.numberShown = true;
         }
-        this.mouseClicked();
     }
     
     private Boolean overCircle() {
@@ -44,22 +43,13 @@ class Field {
         }
     }
     
-    private void mouseClicked() {
-        if (this.overButton && mousePressed) {
-            this.numberShown = true;
-            //println("KEKW");
-        }
-    }
-    
     //Button Test End
     
     public void SetValue(int v) {
         if (!this.IsUsed) {
             this.Value = v;
             this.IsUsed = !this.IsUsed;
-            return;
         }
-        throw new Error("Field Is Already Used.");
     }
     
     public int GetValue() {
@@ -84,10 +74,13 @@ class Field {
         if (this.IsUsed) {
             fill(this.tColor);
             textAlign(CENTER, CENTER);
-            int lul = str(this.Value).length();
-            textSize(100 / lul);
+            textSize(60);
             
-            if (this.numberShown) {
+            int length = str(this.Value).length();
+
+            if (this.numberShown && length >= 2) {
+                text(str(this.Value), this.posX, this.posY - 3);
+            } else {
                 text(str(this.Value), this.posX, this.posY);
             }
         }

@@ -3,10 +3,11 @@ class Wuerfel {
     private int high;
     private int posX;
     private int posY;
+    private int size = 50;
     private color dColor;
     private color tColor;
     private int lastDiceValue;
-    
+   
     Wuerfel(int low, int high, int posX, int posY, color diceColor, color textColor) {
         this.low = low;
         this.high = high;
@@ -29,10 +30,11 @@ class Wuerfel {
             this.lastDiceValue = this.Run();
         }
         fill(this.dColor);
-        square(this.posX, this.posY, 50);
+        square(this.posX, this.posY, this.size);
         
         fill(this.tColor);
-        text(str(this.lastDiceValue), this.posX, this.posY);
+        textAlign(CENTER, CENTER);
+        text(str(this.lastDiceValue), this.posX + (this.size / 2), this.posY + (this.size / 2));
         fill(255);
     }
 }

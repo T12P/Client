@@ -25,41 +25,6 @@ void setup() {
     p = new Wuerfel(0, 5, 830, 920, color(255, 0, 0), textColor);
     q = new Wuerfel(1, 6, 920, 920, color(255, 247, 0), textColor);
 }
-/*
-void operations(int value1, int value2) {
-int high;
-int low;
-if (value1 > value2) {
-high = value1;
-low = value2;
-    } else if (value1 < value2) {
-high = value2;
-low = value1;
-    } else if (value1 == value2) {
-high = value1;
-low = value2;
-    }
-if (keyPressed == true) {
-if (key == '+') {
-println(" + ");
-selectedNumber = int(high + low);
-} else if (key == '-') {
-println(" - ");
-selectedNumber = int(high - low);
-} else if (key == '*') {
-println(" * ");
-selectedNumber = int(high * low);
-} else if (key == '/') {
-if (high == 0 || low == 0) {
-selectedNumber = -1;
-} else {
-println(" / ");
-selectedNumber = int(high / low);
-}
-}
-    }
-}
-*/
 
 void highLowCheck(int value1, int value2) {
     if (value1 > value2) {
@@ -81,6 +46,7 @@ void draw() {
     
     fill(textColor);
     textSize(25);
+    textAlign(CENTER, CENTER);
     text("Calculations:", 600, 30);
     text("Low: " + str(lowNumber), 600, 60);
     text("High: " + str(highNumber), 600, 90);
