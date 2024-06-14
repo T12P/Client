@@ -18,34 +18,37 @@ Map map;
 void setup() {
     size(1000,1000);
     bg = loadImage("background.png");
-    bg.resize(1000,1000);
-
+    bg.resize(width,height);
+    
     g = new Board(4, new String[]{"Low", "High", "Sub", "Add", "Mult"});
-
+    
     textSize(100);
-
-    f = new Field(342, 121, fieldColor, fieldColorAlt, textColor);
-    z = new Field(238, 149, fieldColor, fieldColorAlt, textColor);
-    y = new Field(264, 254, fieldColor, fieldColorAlt, textColor);
-    k = new Field(370, 276, fieldColor, fieldColorAlt, textColor);
-    u = new Field(477, 297, fieldColor, fieldColorAlt, textColor);
-    v = new Field(561, 228, fieldColor, fieldColorAlt, textColor);
-    a = new Field(193, 335, fieldColor, fieldColorAlt, textColor);
-    b = new Field(297, 357, fieldColor, fieldColorAlt, textColor);
-    c = new Field(403, 379, fieldColor, fieldColorAlt, textColor);
-    d = new Field(508, 402, fieldColor, fieldColorAlt, textColor);
-    e = new Field(612, 422, fieldColor, fieldColorAlt, textColor);
-    h = new Field(719, 435, fieldColor, fieldColorAlt, textColor);
-    j = new Field(676, 336, fieldColor, fieldColorAlt, textColor);
-    l = new Field(783, 349, fieldColor, fieldColorAlt, textColor);
-    m = new Field(881, 389, fieldColor, fieldColorAlt, textColor);
-    i = new Field(227, 437, fieldColor, fieldColorAlt, textColor);
-    o = new Field(333, 459, fieldColor, fieldColorAlt, textColor);
-    r = new Field(437, 482, fieldColor, fieldColorAlt, textColor);
-    t = new Field(542, 503, fieldColor, fieldColorAlt, textColor);
-
+    
+    f = new Field(int(0.342 * width), int(0.121 * height), fieldColor, fieldColorAlt, textColor);
+    z = new Field(int(0.238 * width), int(0.149 * height), fieldColor, fieldColorAlt, textColor);
+    y = new Field(int(0.264 * width), int(0.254 * height), fieldColor, fieldColorAlt, textColor);
+    k = new Field(int(0.370 * width), int(0.276 * height), fieldColor, fieldColorAlt, textColor);
+    u = new Field(int(0.477 * width), int(0.297 * height), fieldColor, fieldColorAlt, textColor);
+    v = new Field(int(0.561 * width), int(0.228 * height), fieldColor, fieldColorAlt, textColor);
+    a = new Field(int(0.193 * width), int(0.335 * height), fieldColor, fieldColorAlt, textColor);
+    b = new Field(int(0.297 * width), int(0.357 * height), fieldColor, fieldColorAlt, textColor);
+    c = new Field(int(0.403 * width), int(0.379 * height), fieldColor, fieldColorAlt, textColor);
+    d = new Field(int(0.508 * width), int(0.402 * height), fieldColor, fieldColorAlt, textColor);
+    e = new Field(int(0.612 * width), int(0.422 * height), fieldColor, fieldColorAlt, textColor);
+    h = new Field(int(0.719 * width), int(0.435 * height), fieldColor, fieldColorAlt, textColor);
+    j = new Field(int(0.676 * width), int(0.336 * height), fieldColor, fieldColorAlt, textColor);
+    l = new Field(int(0.783 * width), int(0.349 * height), fieldColor, fieldColorAlt, textColor);
+    m = new Field(int(0.881 * width), int(0.389 * height), fieldColor, fieldColorAlt, textColor);
+    i = new Field(int(0.227 * width), int(0.437 * height), fieldColor, fieldColorAlt, textColor);
+    o = new Field(int(0.333 * width), int(0.459 * height), fieldColor, fieldColorAlt, textColor);
+    r = new Field(int(0.437 * width), int(0.482 * height), fieldColor, fieldColorAlt, textColor);
+    t = new Field(int(0.542 * width), int(0.503 * height), fieldColor, fieldColorAlt, textColor);
+    
+    p = new Wuerfel(0, 5, width - 100, int(height * 0.75 - 50), color(255, 255, 255), textColor);
+    q = new Wuerfel(1, 6, width - 50, int(height * 0.75 - 50), color(255, 247, 0), textColor);
+    
     map = new Map(new Field[]{f, z, y, k, u, v ,a, b, c, d, e, h, j, l, m, i, o, r, t});
-
+    
     p = new Wuerfel(0, 5, 830, 700, color(255, 255, 255), textColor);
     q = new Wuerfel(1, 6, 920, 700, color(255, 247, 0), textColor);
 }
@@ -65,9 +68,9 @@ void highLowCheck(int value1, int value2) {
 
 void draw() {
     background(bg);
-
+    
     highLowCheck(p.exposeValue(), q.exposeValue());
-
+    
     // fill(textColor);
     // textSize(25);
     // textAlign(CENTER, CENTER);
@@ -77,31 +80,31 @@ void draw() {
     // text("Subtraction: " + str(highNumber - lowNumber), 600, 120);
     // text("Addition: " + str(highNumber + lowNumber), 600, 150);
     // text("Multiplication: " + str(highNumber * lowNumber), 600, 180);
-
+    
     // if (keyPressed) {
-        // if (key == 'l' || key == 'L') {
-            // selectedNumber = lowNumber;
-        // } else if (key == 'h' || key == 'H') {
-            // selectedNumber = highNumber;
-        // } else if (key == 's' || key == 'S') {
-            // selectedNumber = highNumber - lowNumber;
-        // } else if (key == 'a' || key == 'A') {
-            // selectedNumber = highNumber + lowNumber;
-        // } else if (key == 'm' || key == 'M') {
-            // selectedNumber = highNumber * lowNumber;
-        // }
+    // if (key == 'l' || key == 'L') {
+    // selectedNumber = lowNumber;
+    // } else if (key == 'h' || key == 'H') {
+    // selectedNumber = highNumber;
+    // } else if (key == 's' || key == 'S') {
+    // selectedNumber = highNumber - lowNumber;
+    // } else if (key == 'a' || key == 'A') {
+    // selectedNumber = highNumber + lowNumber;
+    // } else if (key == 'm' || key == 'M') {
+    // selectedNumber = highNumber * lowNumber;
     // }
-
+// }
+    
     // text("Selected: " + str(selectedNumber), 600, 210);
-
+    
     // circle(mouseX, mouseY, 100);
     // if (mousePressed == true) {
-       //  println("y = new Field(" + str(mouseX) + ", " + str(mouseY) + ", fieldColor, fieldColorAlt, textColor);");
-    // }
-
+    //  println("y = new Field(" + str(mouseX) + ", " + str(mouseY) + ", fieldColor, fieldColorAlt, textColor);");
+// }
+    
     p.Draw();
     q.Draw();
-
+    
     f.Draw();
     z.Draw();
     y.Draw();
@@ -121,6 +124,6 @@ void draw() {
     o.Draw();
     r.Draw();
     t.Draw();
-
+    
     g.Draw();
 }
