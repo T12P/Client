@@ -53,7 +53,7 @@ class Select {
             fill(100);
             textAlign(CENTER, CENTER);
             textSize(30);
-            text("X", this.posX + 25, this.posY + 25);
+            text("X", this.posX + (this._width / 2), this.posY + (this._height / 2));
             fill(0,0,0,0);
         } else {
             stroke(0);
