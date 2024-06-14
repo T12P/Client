@@ -41,8 +41,8 @@ void setup() {
     r = new Field(437, 482, fieldColor, fieldColorAlt, textColor);
     t = new Field(542, 503, fieldColor, fieldColorAlt, textColor);
 
-    p = new Wuerfel(0, 5, 830, 920, color(255, 0, 0), textColor);
-    q = new Wuerfel(1, 6, 920, 920, color(255, 247, 0), textColor);
+    p = new Wuerfel(0, 5, 830, 700, color(255, 255, 255), textColor);
+    q = new Wuerfel(1, 6, 920, 700, color(255, 247, 0), textColor);
 }
 
 void highLowCheck(int value1, int value2) {
@@ -91,7 +91,7 @@ void draw() {
 
     // circle(mouseX, mouseY, 100);
     // if (mousePressed == true) {
-    //     println("y = new Field(" + str(mouseX) + ", " + str(mouseY) + ", fieldColor, fieldColorAlt, textColor);");
+       //  println("y = new Field(" + str(mouseX) + ", " + str(mouseY) + ", fieldColor, fieldColorAlt, textColor);");
     // }
 
     p.Draw();

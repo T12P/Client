@@ -80,9 +80,9 @@ class Field {
             int length = str(this.Value).length();
 
             if (this.numberShown && length >= 2) {
-                text(str(this.Value), this.posX, this.posY - 3);
+                text(str(this.Value), this.posX - 3, this.posY - 8);
             } else {
-                text(str(this.Value), this.posX, this.posY);
+                text(str(this.Value), this.posX, this.posY - 8);
             }
         }
     }

@@ -26,7 +26,7 @@ class Select {
 
     private void Update() {
         this.overButton = this.overRect();
-        if (this.overButton && mousePressed) {
+        if (this.overButton && mousePressed && selectedNumber == null) {
             this.numberShown = true;
         }
     }
