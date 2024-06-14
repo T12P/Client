@@ -2,6 +2,8 @@ public color textColor = color(0);
 public color fieldColor = color(255);
 public color fieldColorAlt = color(150);
 public Integer selectedNumber = null;
+public Integer diceCount = 1;
+public Integer lastDiceCount = 0;
 
 public int highNumber;
 public int lowNumber;
@@ -11,6 +13,7 @@ PImage bg;
 Field f, z, y, k, u, v, a, b, c, d, e, h, j, l, m, i, o, r, t;
 Wuerfel q, p;
 Board g;
+Map map;
 
 void setup() {
     size(1000,1000);
@@ -40,6 +43,8 @@ void setup() {
     o = new Field(333, 459, fieldColor, fieldColorAlt, textColor);
     r = new Field(437, 482, fieldColor, fieldColorAlt, textColor);
     t = new Field(542, 503, fieldColor, fieldColorAlt, textColor);
+
+    map = new Map(new Field[]{f, z, y, k, u, v ,a, b, c, d, e, h, j, l, m, i, o, r, t});
 
     p = new Wuerfel(0, 5, 830, 700, color(255, 255, 255), textColor);
     q = new Wuerfel(1, 6, 920, 700, color(255, 247, 0), textColor);

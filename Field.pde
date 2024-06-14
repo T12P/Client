@@ -37,6 +37,7 @@ class Field {
         float disX = this.posX - mouseX;
         float disY = this.posY - mouseY;
         if (sqrt(sq(disX) + sq(disY)) < this.size / 2) {
+            println("Hovered: x=" + posX + " y=" + posY);
             return true;
         } else {
             return false;

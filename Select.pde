@@ -26,8 +26,9 @@ class Select {
 
     private void Update() {
         this.overButton = this.overRect();
-        if (this.overButton && mousePressed && selectedNumber == null) {
+        if (this.overButton && mousePressed && selectedNumber == null  && diceCount != lastDiceCount && this.runAction() <= 12) {
             this.numberShown = true;
+            lastDiceCount = diceCount;
         }
     }
 
@@ -41,6 +42,25 @@ class Select {
     }
 
     //Button Test End
+
+    public Integer runAction() {
+        
+        switch (this.a) {
+        case "Low":
+            return lowNumber;
+        case "High":
+            return highNumber;
+        case "Sub":
+            return highNumber - lowNumber;
+        case "Add":
+            return highNumber + lowNumber;
+        case "Mult":
+            return highNumber * lowNumber;
+        default:
+            return null;
+        }
+
+    }
 
     public void Draw() {
         this.Update();
@@ -68,23 +88,7 @@ class Select {
             text("X", this.posX + (this._width / 2), this.posY + (this._height / 2));
 
             if (!this.wasSelected) {
-                switch (this.a) {
-                case "Low":
-                    selectedNumber = lowNumber;
-                    break;
-                case "High":
-                    selectedNumber = highNumber;
-                    break;
-                case "Sub":
-                    selectedNumber = highNumber - lowNumber;
-                    break;
-                case "Add":
-                    selectedNumber = highNumber + lowNumber;
-                    break;
-                case "Mult":
-                    selectedNumber = highNumber * lowNumber;
-                    break;
-                }
+                selectedNumber = this.runAction();
             }
             this.wasSelected = true;
         }

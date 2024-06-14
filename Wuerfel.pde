@@ -8,6 +8,7 @@ class Wuerfel {
     private color tColor;
     private int lastDiceValue;
     
+    
     private String[] dice = new String[]{"◻", "⚀", "⚁", "⚂", "⚃", "⚄", "⚅"};
    
     Wuerfel(int low, int high, int posX, int posY, color diceColor, color textColor) {
@@ -24,6 +25,8 @@ class Wuerfel {
     }
     
     public int Run() {
+        diceCount++;
+        println("diceCount: " + str(diceCount));
         return int(random(this.low, this.high));
     }
     
@@ -44,7 +47,7 @@ class Wuerfel {
         textAlign(CENTER, CENTER);
         PFont f = createFont("Arial Unicode MS", 64);
         textFont(f);
-        text(this.getUnicode(this.lastDiceValue), this.posX + (this.size / 2), this.posY - 10 + (this.size / 2));
+        text(this.getUnicode(this.lastDiceValue), this.posX + (this.size / 2), this.posY + (this.size / 2));
         fill(255);
     }
 }
