@@ -19,7 +19,7 @@ class Board {
         for (int i = 0; i < this.w; i = i + 1) {
             for (int j = 0; j < this.h; j = j + 1) {
                 //this.s = new Select(375 + 50 * j,25 + 50 * i,50,50, this.a[i]); <- OUTDATED
-                this.s = new Select(width - (boardField * (j + 1)),int(height * 0.75) + boardField * i,boardField,boardField, this.a[i]);
+                this.s = new Select(width - (boardField * (j + 1)) - 50, boardField * i, boardField, boardField, this.a[i]);
                 this.arr[i][j] = this.s;
             }
         }
@@ -32,11 +32,13 @@ class Board {
         
         for (i = 0; i < this.w; i = i + 1) {
             
+
+            //rect(width - (boardField * (this.w)) - 50, boardField * i + boardField / 2);
             fill(0);
             textSize(25);
             textAlign(CENTER, CENTER);
             //text(this.a[i], 720, 50 + 50 * i);
-            text(this.a[i], width - (boardField * (this.w)), int(height * 0.75) + boardField * i + boardField / 2);
+            text(this.a[i], width - (boardField * (this.w)) - 50, boardField * i + boardField / 2);
             
             
             for (int j = 0; j < this.h; j = j + 1) {
@@ -49,7 +51,7 @@ class Board {
         textAlign(CENTER, CENTER);
         if (selectedNumber != null) {
             //text("Selected: " + str(selectedNumber), 720, 50 + 50 * i);
-            text("Selected: " + str(selectedNumber), width - (boardField * (this.w)), boardField + boardField * i);
+            text("Selected: " + str(selectedNumber), width - (boardField * (this.w)) -15, boardField + boardField * i - 28);
         }
 }
 }

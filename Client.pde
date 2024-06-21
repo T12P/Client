@@ -5,13 +5,13 @@ public Integer selectedNumber = null;
 public Integer diceCount = 1;
 public Integer lastDiceCount = 0;
 public Boolean initialRun = true;
+public int points = 0;
 
 public int highNumber;
 public int lowNumber;
 
 
 PImage bg;
-Field f, z, y, k, u, v, a, b, c, d, e, h, j, l, m, i, o, r, t;
 Wuerfel q, p;
 Board g;
 Map map;
@@ -25,31 +25,32 @@ void setup() {
 
     textSize(100);
 
-    f = new Field(int(0.342 * width), int(0.121 * height), fieldColor, fieldColorAlt, textColor);
-    z = new Field(int(0.238 * width), int(0.149 * height), fieldColor, fieldColorAlt, textColor);
-    y = new Field(int(0.264 * width), int(0.254 * height), fieldColor, fieldColorAlt, textColor);
-    k = new Field(int(0.370 * width), int(0.276 * height), fieldColor, fieldColorAlt, textColor);
-    u = new Field(int(0.477 * width), int(0.297 * height), fieldColor, fieldColorAlt, textColor);
-    v = new Field(int(0.561 * width), int(0.228 * height), fieldColor, fieldColorAlt, textColor);
-    a = new Field(int(0.193 * width), int(0.335 * height), fieldColor, fieldColorAlt, textColor);
-    b = new Field(int(0.297 * width), int(0.357 * height), fieldColor, fieldColorAlt, textColor);
-    c = new Field(int(0.403 * width), int(0.379 * height), fieldColor, fieldColorAlt, textColor);
-    d = new Field(int(0.508 * width), int(0.402 * height), fieldColor, fieldColorAlt, textColor);
-    e = new Field(int(0.612 * width), int(0.422 * height), fieldColor, fieldColorAlt, textColor);
-    h = new Field(int(0.719 * width), int(0.435 * height), fieldColor, fieldColorAlt, textColor);
-    j = new Field(int(0.676 * width), int(0.336 * height), fieldColor, fieldColorAlt, textColor);
-    l = new Field(int(0.783 * width), int(0.349 * height), fieldColor, fieldColorAlt, textColor);
-    m = new Field(int(0.881 * width), int(0.389 * height), fieldColor, fieldColorAlt, textColor);
-    i = new Field(int(0.227 * width), int(0.437 * height), fieldColor, fieldColorAlt, textColor);
-    o = new Field(int(0.333 * width), int(0.459 * height), fieldColor, fieldColorAlt, textColor);
-    r = new Field(int(0.437 * width), int(0.482 * height), fieldColor, fieldColorAlt, textColor);
-    t = new Field(int(0.542 * width), int(0.503 * height), fieldColor, fieldColorAlt, textColor);
+    map = new Map(new Field[]{
+        new Field(int(0.342 * width), int(0.121 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.238 * width), int(0.149 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.264 * width), int(0.254 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.370 * width), int(0.276 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.477 * width), int(0.297 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.561 * width), int(0.228 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.193 * width), int(0.335 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.297 * width), int(0.357 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.403 * width), int(0.379 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.508 * width), int(0.402 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.612 * width), int(0.422 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.719 * width), int(0.435 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.676 * width), int(0.336 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.783 * width), int(0.349 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.881 * width), int(0.389 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.227 * width), int(0.437 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.333 * width), int(0.459 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.437 * width), int(0.482 * height), fieldColor, fieldColorAlt, textColor),
+        new Field(int(0.542 * width), int(0.503 * height), fieldColor, fieldColorAlt, textColor),
+    });
+
+    map.generateNeighbours();
 
     p = new Wuerfel(0, 5, width - 100, int(height * 0.75 - 50), color(255, 255, 255), textColor);
     q = new Wuerfel(1, 6, width - 50, int(height * 0.75 - 50), color(255, 247, 0), textColor);
-
-    map = new Map(new Field[]{f, z, y, k, u, v ,a, b, c, d, e, h, j, l, m, i, o, r, t});
-    map.generateNeighbours();
 
     p = new Wuerfel(0, 5, 830, 700, color(255, 255, 255), textColor);
     q = new Wuerfel(1, 6, 920, 700, color(255, 247, 0), textColor);
@@ -107,25 +108,15 @@ void draw() {
     p.Draw();
     q.Draw();
 
-    f.Draw();
-    z.Draw();
-    y.Draw();
-    k.Draw();
-    u.Draw();
-    v.Draw();
-    a.Draw();
-    b.Draw();
-    c.Draw();
-    d.Draw();
-    e.Draw();
-    h.Draw();
-    j.Draw();
-    l.Draw();
-    m.Draw();
-    i.Draw();
-    o.Draw();
-    r.Draw();
-    t.Draw();
+    map.Draw();
 
     g.Draw();
+
+    if (keyPressed) {
+        if (key == 'e') {
+            map.Evaluate();
+            println(points);
+            points = 0;
+        }
+    }
 }

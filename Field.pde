@@ -6,8 +6,9 @@ class Field {
     private color fColorAlt;
     private color tColor;
 
-    private int Value;
+    private Integer Value = null;
     private Boolean IsUsed = false;
+    private Boolean WasEval = false;
 
     private Field[] Neighboring = {};
 
@@ -19,8 +20,20 @@ class Field {
         this.tColor = textColor;
     }
 
+    public void LogEvalState() {
+        this.WasEval = true;
+    }
+
+    public Boolean GetEvalState() {
+        return this.WasEval;
+    }
+
     public void SetNeighbors(Field[] f) {
         this.Neighboring = f;
+    }
+
+    public Field[] GetNeighbors() {
+        return this.Neighboring;
     }
 
     //Button Test
@@ -75,7 +88,7 @@ class Field {
         }
     }
 
-    public int GetValue() {
+    public Integer GetValue() {
         return this.Value;
     }
 

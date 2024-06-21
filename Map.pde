@@ -24,4 +24,25 @@ class Map {
             this.f[i].SetNeighbors(x);
         }
     }
+
+    public void Evaluate() {
+        Field[] k;
+        for (int i = 0; i < this.f.length; i++) {
+            Integer z = this.f[i].GetValue();
+            k = this.f[i].GetNeighbors();
+            this.f[i].LogEvalState();
+            for (int j = 0; j < k.length; j++) {
+                if ((k[j].GetValue() == z && k[j].GetValue() != null) || !k[j].GetEvalState()) {
+                    points++;
+                }
+            }
+        }
+    }
+
+
+    public void Draw() {
+        for (int i = 0; i < this.f.length; i++) {
+            this.f[i].Draw();
+        }
+    }
 }
