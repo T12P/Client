@@ -18,7 +18,7 @@ Map map;
 
 void setup() {
     size(1000,1000);
-    bg = loadImage("background.png");
+    bg = loadImage("backgroundW.png");
     bg.resize(width,height);
 
     g = new Board(4, new String[]{"Low", "High", "Sub", "Add", "Mult"});
